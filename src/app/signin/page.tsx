@@ -1,34 +1,6 @@
-'use client';
-import React,{useState} from "react";
+import React from "react";
 import { FcGoogle } from "react-icons/fc";
-
-import {auth} from '@/firbase/config';
-import { createUserWithEmailAndPassword } from "firebase/auth";
-
-
 const RegisterForm = () => {
-    const [userName,setUsername] = useState('');
-    const [email,setEmail] = useState('');
-    const [password,setPassword] = useState('');
-
-    const signupHandler = async ()  =>{
-
-        if(!userName || !email || !password ) return;
-
-        try{
-            const user = await createUserWithEmailAndPassword(auth,email,password)
-            console.log(user)
-
-
-        }
-        catch(error)
-        {
-                console.log("Error agagya",error)
-        }
-
-
-    }
-
     return (
         <main className="flex lg:h-[100vh]">
             <div className="w-full lg:w-[60%] p-8 md:p-14 flex items-center justify-center lg:justify-start">
@@ -47,24 +19,19 @@ const RegisterForm = () => {
                             Login with Google
                         </span>
                     </div>
-                    
-                    <form onSubmit={(e) => e.preventDefault()}>
+
                     <div className="mt-10 pl-1 flex flex-col">
                         <label>Name</label>
                         <input
                             type="text"
                             className="font-medium border-b border-black p-4 outline-0 focus-within:border-blue-400"
-                            required
-                            onChange={(e)=> setUsername(e.target.value)}
                         />
                     </div>
                     <div className="mt-10 pl-1 flex flex-col">
                         <label>Email</label>
                         <input
-                            type="email"
+                            type="text"
                             className="font-medium border-b border-black p-4 outline-0 focus-within:border-blue-400"
-                            required
-                            onChange={(e)=> setEmail(e.target.value)}
                         />
                     </div>
                     <div className="mt-10 pl-1 flex flex-col">
@@ -72,16 +39,11 @@ const RegisterForm = () => {
                         <input
                             type="password"
                             className="font-medium border-b border-black p-4 outline-0 focus-within:border-blue-400"
-                            required
-                            onChange={(e)=> setPassword(e.target.value)}
-
                         />
                     </div>
-                    <button className="bg-black text-white w-44 py-4 mt-10 rounded-full transition-transform hover:bg-black/[0.8] active:scale-90" onClick={signupHandler} >
+                    <button className="bg-black text-white w-44 py-4 mt-10 rounded-full transition-transform hover:bg-black/[0.8] active:scale-90">
                         Sign Up
                     </button>
-
-                    </form>
                 </div>
             </div>
             <div
